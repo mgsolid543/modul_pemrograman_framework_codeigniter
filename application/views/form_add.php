@@ -32,9 +32,12 @@
         
         <div>
             <label>Konten</label>
-            <textarea name="content"  cols="30" rows="10" class="form-control" id=""></textarea>
+            <textarea name="content" cols="30" rows="10" class="form-control" id=""></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Simpan Artikel</button>
-    </form>
+      </form>
+    </div>
+  </div>
+</div>
 
 <?php $this->load->view('footer.php'); ?>
