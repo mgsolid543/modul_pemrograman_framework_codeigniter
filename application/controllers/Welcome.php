@@ -24,7 +24,7 @@ class Welcome extends CI_Controller {
 	}
 
 	public function percobaan() {
-		echo "Ini halaman percobaan";
+		$this->load->view("percobaan");
 	}
 
 }
