@@ -20,9 +20,21 @@ Class Blog extends CI_Controller
         $this->load->view('detail',$data);
     }
 
-    public function listdata()
-    {
-        $this->load->view('list_data');
+    public function add() {
+
+        if ($this->input->post()) {
+            $data['title'] = $this->input->post('title'); //$_POST['title']
+            $data['url']   = $this->input->post('url');
+            $data['content']=$this->input->post('content');
+
+            $id = $this->Blog_model->insertBlog($data);
+            if ($id) 
+                echo "Data berhasil disimpan";
+            else    
+                echo "Data gagal disimpan";
+        }
+
+        $this->load->view('form_add');
     }
 
 }

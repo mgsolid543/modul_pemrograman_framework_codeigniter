@@ -5,6 +5,8 @@
 </head>
 <body>
     <h1>Artikel Terbaru</h1>
+
+    <a href="<?php echo site_url('blog/add')?>"> + Tambah Artikel </a>
     
     <?php foreach($blogs as $key=>$blog):?>
     <div class="blog">
