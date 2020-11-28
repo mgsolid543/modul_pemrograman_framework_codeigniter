@@ -20,10 +20,16 @@ Class Blog extends CI_Controller
         $this->load->view('list_data');
     }
 
-    public function detaildata()
+    public function detail($url)
     {
-        $this->load->view('detail_blog');
+        $this->load->database();
+        $this->db->where('url',$url); //select where berdasarkan url
+        $query = $this->db->get('blog');    
+        $data['blogs']=$query->row_array();
+
+        $this->load->view('detail',$data);
     }
+
 }
 
 ?>
