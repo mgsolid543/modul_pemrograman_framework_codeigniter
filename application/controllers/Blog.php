@@ -3,8 +3,11 @@
 Class Blog extends CI_Controller 
 {
     public function index($nama, $goldarah, $alamat) {
-        echo "Selamat Datang $nama, Golongan Darah Anda $goldarah dan
-            Alamat Anda di $alamat";
+
+        $data['nama']       = $nama;
+        $data['goldarah']   = $goldarah;
+        $data['alamat']     = $alamat;
+        $this->load->view("blog", $data);
     }
 
     public function listdata()
