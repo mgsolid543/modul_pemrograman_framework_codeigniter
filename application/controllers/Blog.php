@@ -5,21 +5,18 @@ Class Blog extends CI_Controller
     function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->model('Blog_model');
         $this->load->helper('url');
     }
     
     public function index() {
-        $query = $this->db->get('blog');
-        $data['blogs'] = $query->result_array(); 
-        $this->load->view('blog', $data);
+        $data['blogs'] = $this->Blog_model->getBlogs();
+        $this->load->view('blog',$data);
     }
 
     public function detail($url)
     {
-        $this->db->where('url',$url); //select where berdasarkan url
-        $query = $this->db->get('blog');    
-        $data['blogs']=$query->row_array();
-
+        $data['blogs'] =$this->Blog_model->getSingleBlog($url);
         $this->load->view('detail',$data);
     }
 
