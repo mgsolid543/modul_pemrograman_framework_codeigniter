@@ -7,6 +7,12 @@
     <h1>Artikel Terbaru</h1>
 
     <a href="<?php echo site_url('blog/add')?>"> + Tambah Artikel </a>
+    <br><br>
+
+    <form>
+        <input type="text" name="find">
+        <button type="submit">Cari</button>
+    </form>
     
     <?php foreach($blogs as $key=>$blog):?>
     <div class="blog">
