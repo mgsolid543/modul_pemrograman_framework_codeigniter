@@ -15,6 +15,8 @@
         
             <h2><?php echo $blog['title'];?></h2>
             <a href="<?php echo site_url('blog/edit/'.$blog['id']);?>"> Edit </a>
+            |
+            <a href="<?php echo site_url('blog/delete/'.$blog['id']);?>"> Hapus </a>
         
         </a>
         <?php echo $blog['content'];
