@@ -16,7 +16,7 @@ Class Blog extends CI_Controller
 
     public function detail($url)
     {
-        $data['blogs'] =$this->Blog_model->getSingleBlog($url);
+        $data['blogs'] =$this->Blog_model->getSingleBlog('url', $url);
         $this->load->view('detail',$data);
     }
 
@@ -35,6 +35,23 @@ Class Blog extends CI_Controller
         }
 
         $this->load->view('form_add');
+    }
+
+    public function edit($id) {
+        $data['blog'] = $this->Blog_model->getSingleBlog('id', $id);
+
+        if ($this->input->post()) {
+            $post['title'] = $this->input->post('title');
+            $post['url']   = $this->input->post('url');
+            $post['content']=$this->input->post('content');
+            $id = $this->Blog_model->updateBlog($id, $post);
+
+            if ($id) 
+                echo "Data berhasil disimpan";
+            else    
+                echo "Data gagal disimpan";
+        }
+        $this->load->view('form_edit', $data);
     }
 
 }
