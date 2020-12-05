@@ -70,9 +70,9 @@ Class Blog extends CI_Controller
  
              $this->load->library('upload', $config);
  
-             if (!$this->upload->do_upload('cover')) {
-                 echo $this->upload->display_errors();
-             } else {
+             $this->upload->do_upload('cover');
+             
+             if (!empty($this->upload->data('file_name'))) {
                  $post['cover'] = $this->upload->data('file_name');
              }
 
