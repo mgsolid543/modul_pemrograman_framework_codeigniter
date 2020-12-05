@@ -1,11 +1,13 @@
 <?php
 
 class Blog_model extends CI_Model {
-    public function getBlogs()
+    public function getBlogs($limit, $offset)
     {
         $filter = $this->input->get('find');
 
         $this->db->like('title', $filter);
+        $this->db->limit($limit, $offset);
+        $this->db->order_by('date', 'desc');
         $query = $this->db->get('blog');
 
         return $query->result_array();
@@ -33,6 +35,12 @@ class Blog_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('blog');
         return $this->db->affected_rows();
+    }
+
+    public function getTotalBlog() {
+        $filter = $this->input->get('find');
+        $this->db->like('title', $filter);
+        return $this->db->count_all_results("blog");
     }
 }
 ?>
