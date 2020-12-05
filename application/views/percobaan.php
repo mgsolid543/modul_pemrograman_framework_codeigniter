@@ -6,7 +6,6 @@
 
         <p class="footer">
             Page renderred in <strong>{elapsed_time} seconds.
-
          </p>
     </div>
 </div>

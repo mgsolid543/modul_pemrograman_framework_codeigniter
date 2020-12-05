@@ -18,24 +18,24 @@
     <div class="com-md-8">
       <h1>Tambah Artikel</h1>
         
-      <form method="POST">
-        <div>
+      <?php echo form_open(); ?>
+      
+      <div>
             <label>Judul</label>
-            <input type="text" class="form-control" name="title">
-        </div>
+            <?php echo form_input('title', null, 'class="form-control"'); ?>
+      </div>
 
-        <div>
+      <div>
             <label>URL</label>
-            <input type="text"  class="form-control" name="url">
+            <?php echo form_input('url', null, 'class="form-control"'); ?>
+      </div>
 
-        </div> 
-        
-        <div>
+      <div>
             <label>Konten</label>
-            <textarea name="content" cols="30" rows="10" class="form-control" id=""></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Simpan Artikel</button>
-      </form>
+            <?php echo form_textarea('content', null, 'class="form-control" id="" cols="30" rows="10"'); ?>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Simpan Artikel</button>
     </div>
   </div>
 </div>
