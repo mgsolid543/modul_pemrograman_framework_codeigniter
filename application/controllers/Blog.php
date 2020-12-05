@@ -56,11 +56,11 @@ Class Blog extends CI_Controller
         
                 $id = $this->Blog_model->insertBlog($data);
                 if ($id) {
-                    $this->session->set_flashdata('message', 'Data berhasil disimpan');
+                    $this->session->set_flashdata('message', '<div class="alert alert-success">Data berhasil disimpan</div>');
                     redirect('/');
                 }
                 else {    
-                    $this->session->set_flashdata('message', 'Data gagal disimpan');
+                    $this->session->set_flashdata('message', '<div class="alert alert-warning">Data gagal disimpan</div>');
                     redirect('/');
                 }
             }            
@@ -98,10 +98,13 @@ Class Blog extends CI_Controller
 
             $id = $this->Blog_model->updateBlog($id, $post);
 
-            if ($id) 
-                echo "Data berhasil disimpan";
-            else    
-                echo "Data gagal disimpan";
+            if ($id) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success">Data berhasil disimpan</div>');
+                redirect('/');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-warning">Data gagal disimpan</div>');
+                redirect('/');
+            }
             
         }
         $this->load->view('form_edit', $data);        
@@ -109,7 +112,15 @@ Class Blog extends CI_Controller
     }
 
     public function delete($id) {
-        $this->Blog_model->deleteBlog($id);
+        $result = $this->Blog_model->deleteBlog($id);
+        
+        if ($result) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success">Data berhasil dihapus</div>');
+        }
+        else {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning">Data gagal dihapus</div>');
+        }
+
         redirect();
     }
 

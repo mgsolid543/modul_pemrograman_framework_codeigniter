@@ -42,7 +42,7 @@
           
           <a href="<?php echo site_url('blog/edit/'.$blog['id']);?>"> Edit</a>
 
-          <a href="<?php echo site_url('blog/delete/'.$blog['id']);?>"> Delete</a>
+          <a href="<?php echo site_url('blog/delete/'.$blog['id']);?>" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?')"> Delete</a>
           
           </p>
           <p> <?php echo $blog['content'];?> </p>
