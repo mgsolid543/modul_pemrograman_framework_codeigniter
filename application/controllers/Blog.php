@@ -6,6 +6,7 @@ Class Blog extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->model('Blog_model');
+        $this->load->library('session');
     }
     
     public function index($offset = 0) {
@@ -55,11 +56,12 @@ Class Blog extends CI_Controller
         
                 $id = $this->Blog_model->insertBlog($data);
                 if ($id) {
-                    echo "Data berhasil disimpan";
+                    $this->session->set_flashdata('message', 'Data berhasil disimpan');
                     redirect('/');
                 }
                 else {    
-                    echo "Data gagal disimpan";
+                    $this->session->set_flashdata('message', 'Data gagal disimpan');
+                    redirect('/');
                 }
             }            
         }

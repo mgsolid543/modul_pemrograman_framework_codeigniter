@@ -20,6 +20,8 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         
+        <?php echo $this->session->flashdata('message'); ?>
+        
         <form>
             <input type="text" name="find">
             <button type="submit">Cari</button>
@@ -48,7 +50,7 @@
         <hr>
         <?php endforeach; ?>
         <?php echo $this->pagination->create_links(); ?>
-        
+
         <!-- Pager -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
