@@ -62,27 +62,30 @@ Class Blog extends CI_Controller
     public function edit($id) {
         $data['blog'] = $this->Blog_model->getSingleBlog('id', $id);
 
-        if ($this->input->post()) {
+        $this->form_validation->set_rules('title', 'Judul', 'required');
+        $this->form_validation->set_rules('url', 'URL', 'required|alpha_dash');
+        $this->form_validation->set_rules('content', 'Konten', 'required');
+
+        if ($this->form_validation->run()===TRUE) {
+           
             $post['title'] = $this->input->post('title');
             $post['url']   = $this->input->post('url');
             $post['content']=$this->input->post('content');
 
+            // konfigurasi upload
+            $config['upload_path']   = './uploads/';
+            $config['allowed_types'] = 'gif|png|jpg';
+            $config['max_size']   = 1000;
+            $config['max_width']  = 2000;
+            $config['max_height'] = 1600;
 
-             // konfigurasi upload
-             $config['upload_path']   = './uploads/';
-             $config['allowed_types'] = 'gif|png|jpg';
-             $config['max_size']   = 1000;
-             $config['max_width']  = 2000;
-             $config['max_height'] = 1600;
- 
-             $this->load->library('upload', $config);
- 
-             $this->upload->do_upload('cover');
-             
-             if (!empty($this->upload->data('file_name'))) {
-                 $post['cover'] = $this->upload->data('file_name');
-             }
+            $this->load->library('upload', $config);
 
+            $this->upload->do_upload('cover');
+            
+            if (!empty($this->upload->data('file_name'))) {
+                $post['cover'] = $this->upload->data('file_name');
+            }
 
             $id = $this->Blog_model->updateBlog($id, $post);
 
@@ -90,8 +93,10 @@ Class Blog extends CI_Controller
                 echo "Data berhasil disimpan";
             else    
                 echo "Data gagal disimpan";
+            
         }
-        $this->load->view('form_edit', $data);
+        $this->load->view('form_edit', $data);        
+
     }
 
     public function delete($id) {
