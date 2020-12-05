@@ -18,23 +18,28 @@
     <div class="com-md-8">
       <h1>Tambah Artikel</h1>
         
-      <?php echo form_open(); ?>
+      <?php echo form_open_multipart(); ?>
       
-      <div>
+      <div class="form-group">
             <label>Judul</label>
             <?php echo form_input('title', null, 'class="form-control"'); ?>
       </div>
 
-      <div>
+      <div class="form-group">
             <label>URL</label>
             <?php echo form_input('url', null, 'class="form-control"'); ?>
       </div>
 
-      <div>
+      <div class="form-group">
             <label>Konten</label>
             <?php echo form_textarea('content', null, 'class="form-control" id="" cols="30" rows="10"'); ?>
       </div>
 
+      <div class="form-group">
+          <label>Cover</label>
+          <?php echo form_upload('cover', null, 'class="form-control"'); ?>
+      </div>
+      <br>
       <button type="submit" class="btn btn-primary">Simpan Artikel</button>
     </div>
   </div>

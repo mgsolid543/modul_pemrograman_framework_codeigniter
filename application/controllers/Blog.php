@@ -20,12 +20,27 @@ Class Blog extends CI_Controller
     }
 
     public function add() {
-
         if ($this->input->post()) {
             $data['title'] = $this->input->post('title'); //$_POST['title']
             $data['url']   = $this->input->post('url');
             $data['content']=$this->input->post('content');
 
+            // konfigurasi upload
+
+            $config['upload_path']   = './uploads/';
+            $config['allowed_types'] = 'gif|png|jpg';
+            $config['max_size']   = 1000;
+            $config['max_width']  = 2000;
+            $config['max_height'] = 1600;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('cover')) {
+                echo $this->upload->display_errors();
+            } else {
+                $data['cover'] = $this->upload->data('file_name');
+            }
+    
             $id = $this->Blog_model->insertBlog($data);
             if ($id) {
                 echo "Data berhasil disimpan";
